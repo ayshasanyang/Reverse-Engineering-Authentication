@@ -91,3 +91,6 @@ User.prototype.validPassword = function(password) {
 - package.json { All npm packages contain a file, usually in the project root, called package. json - This file holds various metadata relevant to the project. This file is used to give information to npm that allows it to identify the project as well as handle the project's dependencies}
 
 - server.js { requires packages, sets up PORT, creates express and middleware, creates routes and syncs database/logs message in terminal on successful connection to server };
+
+## Questions
+For any other questions, please send me an email at: isasanyang1986@yahoo.co.uk
