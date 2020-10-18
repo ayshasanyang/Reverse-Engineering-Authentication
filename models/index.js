@@ -39,13 +39,13 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // database connection error 
-// sequelize 
-// .authenticate()
-// .then(() => {
-//   console.log("Connection has been established successfully.");
-// }) 
-// .catch(err => {
-//   console.error("Unable to connect to the database:", err);
-// });
+sequelize 
+.authenticate()
+.then(() => {
+  console.log("Connection has been established successfully.");
+}) 
+.catch(err => {
+  console.error("Unable to connect to the database:", err);
+});
 
 module.exports = db;
