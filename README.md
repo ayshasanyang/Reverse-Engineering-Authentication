@@ -58,12 +58,36 @@ Middleware are functions that handle request, responses and the next middleware 
   function(req, res, next)
 ```
 
-isAuthenticated.js {This file indicates whether the current is authenticated (logged in). restricts routes that a user is not allowed to visit if not logged in. }
+- isAuthenticated.js {This file indicates whether the current is authenticated (logged in). restricts routes that a user is not allowed to visit if not logged in. }
 
-config.js { Config.js file is where the database connection is set up, this file is dependent on the .env file which stores database credentials. }
+- config.js { Config.js file is where the database connection is set up, this file is dependent on the .env file which stores database credentials. }
 
-passport.js { passport is authentication middleware for Node.js, passpart.js sends a set-Cookie header that will be use to authenticate other pages. }
+- passport.js { passport is authentication middleware for Node.js, passpart.js sends a set-Cookie header that will be use to authenticate other pages. }
 
 # Models
-index.js {  This file sets the database up and check the connection using Sequelize. Depending on which database you are using, you may need to define a different dialect.}
+- index.js {  This file sets the database up and check the connection using Sequelize. Depending on which database you are using, you may need to define a different dialect.}
 
+- user.js { user.js contains bcrypt.hash function to generate password hashing, and salt which takes in an integer of (10) as a parameter and returns a callback function with the generate salt. This makes our database secure. }
+
+```javascript
+User.addHook("beforeCreate", function(user) {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+  });
+  return User;
+```
+## Check a User Entered Password
+
+ The bcrypt.compare() function is to compare the passworedEnteredByUser and hash against each other. It has a callback function that returns the true/false result of whether or not the two matches.
+```javascript
+User.prototype.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+  };
+```
+# Routes
+- api-routes.js { contains routes for signing in, logging out, and getting users specific data to be displayed client-side, this file depends on the passport.js for authentication  };
+
+- html-routes.js { routes that check whether the user is signed in if the user already has an account and sends them to the correct Html page. This file also has isAuthenticated middleware to redirect the users to the signup page if the try to access the route without being logged in.};
+
+- package.json { All npm packages contain a file, usually in the project root, called package. json - This file holds various metadata relevant to the project. This file is used to give information to npm that allows it to identify the project as well as handle the project's dependencies}
+
+- server.js { requires packages, sets up PORT, creates express and middleware, creates routes and syncs database/logs message in terminal on successful connection to server };
