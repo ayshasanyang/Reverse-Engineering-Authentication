@@ -6,6 +6,7 @@
 - [Installation](#installation)
 - [Technologies Used](#technologies-used)
 - [Screenshots](#screenshots)
+- [Files-Explained](#files-explained)
 - [Questions](#questions)
 
 ## Description
@@ -47,4 +48,22 @@ Sequelize
 ### Dashboard
 
 ![Sign Up](public/img/dashboard.PNG )
+
+## Files-Explained
+
+# Config
+# Middleware
+Middleware are functions that handle request, responses and the next middleware in the cycle usually with the signature.
+```javascript
+  function(req, res, next)
+```
+
+isAuthenticated.js {This file indicates whether the current is authenticated (logged in). restricts routes that a user is not allowed to visit if not logged in. }
+
+config.js { Config.js file is where the database connection is set up, this file is dependent on the .env file which stores database credentials. }
+
+passport.js { passport is authentication middleware for Node.js, passpart.js sends a set-Cookie header that will be use to authenticate other pages. }
+
+# Models
+index.js {  This file sets the database up and check the connection using Sequelize. Depending on which database you are using, you may need to define a different dialect.}
 
