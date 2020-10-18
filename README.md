@@ -1,7 +1,6 @@
 # Reverse-Engineering-Authentication
 
 ## Table of contents
-- [Screenshots](#screenshots)
 - [Description](#description)
 - [Installation](#installation)
 - [Technologies Used](#technologies-used)
