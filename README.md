@@ -66,7 +66,31 @@ Middleware are functions that handle request, responses and the next middleware 
 # Models
 - index.js {  This file sets the database up and check the connection using Sequelize. Depending on which database you are using, you may need to define a different dialect.}
 
-- user.js { user.js contains bcrypt.hash function to generate password hashing, and salt which takes in an integer of (10) as a parameter and returns a callback function with the generate salt. This makes our database secure. }
+- user.js { User.js {user.js this file creates the user model for our database. It also contains bcrypt.hash function to generate password hashing, and salt which takes in an integer of (10) as a parameter and returns a callback function with the generate salt. This makes our database secure. }
+
+## Creating User Model
+
+```javascript
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define("User", {
+    // The email cannot be null, and must be a proper email before creation
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
+    // The password cannot be null
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  });
+```
+
+## Hashing Password
 
 ```javascript
 User.addHook("beforeCreate", function(user) {

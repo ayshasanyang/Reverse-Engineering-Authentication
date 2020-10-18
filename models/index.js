@@ -8,6 +8,7 @@ const basename  = path.basename(module.filename);
 const config = require("../config/config");
 const db        = {};
 
+// recomend to consolw.log config 
 console.log(config);
 
 const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
@@ -36,5 +37,15 @@ Object.keys(db).forEach(function(modelName) {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+// database connection error 
+// sequelize 
+// .authenticate()
+// .then(() => {
+//   console.log("Connection has been established successfully.");
+// }) 
+// .catch(err => {
+//   console.error("Unable to connect to the database:", err);
+// });
 
 module.exports = db;
